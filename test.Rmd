@@ -1,0 +1,23 @@
+---
+title: "test"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: TRUE
+    toc_depth: 4
+    toc_float: TRUE
+    number_sections: FALSE
+    highlight: "espresso"
+---
+
+```{r setup, include=FALSE}
+install.packages("plm")
+library("plm")
+```
+
+```{r}
+data("Grunfeld", package="plm")
+grun.fe <- plm(inv~value+capital, data = Grunfeld, model = "within")
+grun.re <- plm(inv~value+capital, data = Grunfeld, model = "random")
+summary(grun.re)
+```
